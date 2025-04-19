@@ -1,0 +1,28 @@
+# Set up NEP potential
+potential nep.txt
+
+# time step 
+time_step 0.5
+
+# Initialize velocity at 270K
+velocity 4500
+
+# Equilibrate at the target temperature
+
+ensemble nvt_bdp 4500 4500 100  
+dump_restart 10000
+dump_thermo 200
+run 200000
+
+ensemble nve
+
+# dump extended xyz with every 1000 steps, and restart.
+#dump_exyz 1000 0 0 
+dump_restart 10000
+
+# dump themodynamic quantities and trajectory every 1000 steps
+dump_thermo 200
+
+# run x.000.000 steps, equal to x/2 ns simulation
+run 200000
+

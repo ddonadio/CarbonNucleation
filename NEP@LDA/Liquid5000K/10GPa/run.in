@@ -1,0 +1,28 @@
+# Set up NEP potential
+potential nep.txt
+
+# time step for 0.5 fs
+time_step 0.5
+
+# Initialize velocity at 270K
+velocity 5000
+
+# Equilibrate at the target pressure
+#
+ensemble npt_scr 5000 5000 2000  10.  2.  10000
+dump_restart 10000
+run 2000000
+
+# Run NPT production 
+ensemble npt_scr 5000 5000 2000  10.  2.  10000
+
+# dump extended xyz with every 1000 steps, and restart.
+dump_exyz 2000 0 0
+dump_restart 100000
+
+# dump themodynamic quantities and trajectory every 1000 steps
+dump_thermo 100
+
+# run x.000.000 steps, equal to x/2 ns simulation
+run 2000000
+
