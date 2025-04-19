@@ -1,0 +1,15 @@
+# Set up NEP potential
+potential nepGAP20.txt
+
+# time step for 0.5 fs
+time_step 0.5
+
+# Initialize velocity at 270K
+velocity 4800
+
+ensemble npt_scr 4800  4800 1000  20. 20. 20.  0.1 10.  10.  20000
+dump_thermo 100
+dump_exyz 10000 0 0 
+dump_restart 10000
+
+run 2000000
